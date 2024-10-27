@@ -2,8 +2,9 @@ import "#server-only";
 
 import * as path from "node:path";
 
-import { opi, platform, sdk } from "#content";
+import { opi, platform, releaseNotes, sdk } from "#content";
 import type { DocsContentName } from "~/misc/docs";
+import { makeReleaseNoteFrontmatter } from "~/misc/releaseNote";
 import navYamlDocsEn from "~/routes/(root)/docs/en/_nav.yaml";
 import navYamlOpiKo from "~/routes/(root)/opi/ko/_nav.yaml";
 import navYamlPlatformKo from "~/routes/(root)/platform/ko/_nav.yaml";
@@ -33,6 +34,22 @@ const getFrontmatters = (
 const opiFrontmatters = getFrontmatters(opi);
 const sdkFrontmatters = getFrontmatters(sdk);
 const platformFrontmatters = getFrontmatters(platform);
+const releaseNotesFrontmatters = getFrontmatters(
+  Object.fromEntries(
+    Object.entries(releaseNotes).map(([key, value]) => {
+      return [
+        key,
+        {
+          ...value,
+          frontmatter: makeReleaseNoteFrontmatter(
+            value.frontmatter.releasedAt,
+            key,
+          ),
+        },
+      ];
+    }),
+  ),
+);
 
 const navMenuItemsOpiEn = toNavMenuItems(
   "opi",
@@ -53,6 +70,13 @@ const navMenuItemsPlatformKo = toNavMenuItems(
   "platform",
   navYamlPlatformKo as YamlNavMenuToplevelItem[],
   platformFrontmatters,
+);
+const releaseNotesNavMenuItems = toNavMenuItems(
+  "release-notes",
+  Object.values(releaseNotesFrontmatters).map(
+    (frontmatter) => frontmatter.absSlug,
+  ),
+  releaseNotesFrontmatters,
 );
 export const navMenu = {
   ko: {
