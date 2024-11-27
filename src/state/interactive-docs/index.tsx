@@ -265,8 +265,8 @@ const [InteractiveDocsProvider, useInteractiveDocs] = createContextProvider(
       },
     }),
     languages: () => ({
-      frontend: ["react", "html"],
-      backend: ["express", "FastAPI", "Flask", "Spring_Kotlin"],
+      frontend: ["React", "HTML"],
+      backend: ["Express", "FastAPI", "Flask", "Spring_Kotlin"],
       hybrid: [],
     }),
     selectedLanguage: () => ["react", "express"],
