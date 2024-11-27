@@ -23,12 +23,14 @@ export type CodeExample<
 > = {
   fileName: string;
   code: Code<Params, Sections>;
+  language: string;
 };
 
 export type Tab = {
   fileName: string;
   sections: Record<string, Section>;
   code: string;
+  language: string;
 };
 
 export type PayMethod = "card" | "virtualAccount";
@@ -71,6 +73,8 @@ const highlighterInstance = createHighlighterCore({
     import("shiki/langs/javascript.mjs"),
     import("shiki/langs/html.mjs"),
     import("shiki/langs/css.mjs"),
+    import("shiki/langs/python.mjs"),
+    import("shiki/langs/kotlin.mjs"),
   ],
   engine: createOnigurumaEngine(import("shiki/wasm")),
 });
@@ -147,6 +151,7 @@ const [InteractiveDocsProvider, useInteractiveDocs] = createContextProvider(
           fileName: example.fileName,
           code,
           sections: sections as Record<string, Section>,
+          language: example.language,
         };
       };
       const _selectedLanguage = selectedLanguage();
