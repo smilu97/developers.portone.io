@@ -8,7 +8,6 @@ body,
 
 html {
   overflow-y: scroll;
-  scroll-behavior: smooth;
   scroll-padding-top: 4rem;
 }
 
@@ -19,7 +18,6 @@ html {
 :root {
   word-break: break-all;
   overflow-wrap: break-word;
-  scroll-behavior: smooth;
   font-family:
     "Pretendard Variable",
     Pretendard,
