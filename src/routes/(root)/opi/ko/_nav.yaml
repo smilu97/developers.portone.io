@@ -93,7 +93,9 @@
             - /ko/integration/pg/v1/welcome/caution
             - /ko/integration/pg/v1/welcome/api
         - /ko/integration/pg/v1/eximbay
-        - /ko/integration/pg/v1/paymentwall
+        - slug: /ko/integration/pg/v1/paymentwall/readme
+          items:
+            - /ko/integration/pg/v1/paymentwall/pingback
         - slug: /ko/integration/pg/v1/spb/readme
           items:
             - /ko/integration/pg/v1/spb/stc
